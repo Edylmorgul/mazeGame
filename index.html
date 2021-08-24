@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/iconMaze.png"> <!-- Icon dans la barre d'onglet -->
+    <link rel="stylesheet" href="style.css">
+    <title>Maze Game</title>
+</head>
+<body>
+    <!-- Partie header -->
+    <header>
+        <div id="title">
+            <h1>Le labyrinthe de l'échec</h1>
+            <p> Arriverez-vous à fuir Condorcet ? </p>
+            <p> Veuillez vous connecter, sinon, créer un compte joueur</p>
+            <div class="firstLine"></div>
+        </div>               
+    </header>
+
+    <!-- Affichage pop-up -->
+    <div class="modal">
+        <div class="modal-content">
+            <h2 id="modal-text"></h2>
+        </div>
+    </div>
+
+    <!-- Partie connexion -->
+    <section id="loginForm">
+        <h2>Connexion</h2>
+        <form>
+            <input id="userPseudoLogin" type="text" placeholder="Pseudo" autocomplete="off">
+            <input id="userPasswordLogin" type="password" placeholder="Mot de passe"> </br>
+            <button id="login" type="submit">Connexion</button> </br>
+            <small id="textErrorLogin" class="textError">Veuillez compléter les informations correctement !</small>
+            <small id="textErrorPassword" class="textError">Le mot de passe est incorrect ou le compte est inexistant !</small>
+        </form>
+
+         <!-- Bouton enregistrement -->
+        <div id="btnRegister" class="btn">
+            <a>Créer un compte</a>
+        </div>
+        
+        <!-- Bouton informations -->
+        <div id="btnInfo" class="btn">
+            <a>Informations</a>
+        </div>
+    </section>
+
+    <!-- Partie informations -->
+    <section id="info">
+        <h2>Informations</h2>
+            <h3><u>Introduction et connexion</u></h3>
+                <p>Bienvenue dans <i><b>Le labyrinthe de l'échec</b> - Arriverez-vous à fuir Condorcet ?</i></p>
+                <p>Dans un premier temps, pensez à vous connecter pour jouer. Si ce n'est pas encore fait, inscrivez-vous d'abord !</p>
+
+            <h3><u>Comment jouer ?</u></h3>
+                <p>Le principe est simple, le but du jeu est de trouver la sortie du labyrinthe.</p>
+                <p>Pour ce faire, vous pouvez vous servir des différents boutons à votre disposition. Ceux-ci permettent d'avancer, de reculer, de faire un pas de coté ou encore de pivoter de 90°</p>
+                <p>Une boussole est à votre disposition pour vous indiquez dans quelle direction vous regardez.</p>
+                <p><b>Bonne chance !</b></p>
+
+            <h3><u>Crédits</u></h3>
+                <p>Ce projet a été réalisé par Pierard Loic et Dethioux Pierre dans le cadre de l'examen de deuxième année en AJAX, dispensé par le professeur Moreaux Denis.</p>
+
+            <!-- Bouton retour -->
+        <div id="btnHome" class="btn">
+            <a>Retour</a>
+        </div>
+    </section>
+
+    <!-- Partie enregistrement -->
+    <section id="registerForm">
+        <h2>Formulaire</h2>
+        <form>      
+            <input id="userPseudoRegister" type="text" placeholder="Pseudo (min : 4 max : 20)" autocomplete="off">           
+            <input id="userMailRegister" type="text" placeholder="Email (ex: echec@outlook.com)" autocomplete="off">
+            <input id="userPasswordRegister" type="password" placeholder="Mot de passe (maj - min + chiffre)">
+            <input id="userPasswordVerificationRegister" type="password" placeholder="Confirmer mot de passe"> </br>
+            <button id="register" type="submit">Envoyer</button> </br>
+            <small id="textErrorRegister" class="textError">Veuillez compléter les informations correctement !</small>
+            <small id="textErrorPseudo" class="textError">Ce pseudo existe déjà, veuillez en choisir un autre !</small>
+            <small id="textErrorEmail" class="textError">Cet email existe déjà, veuillez en choisir un autre !</small>
+        </form>
+
+        <!-- Bouton retour login -->
+        <div id="btnBack" class="btn">
+            <a>Retour</a>
+        </div>
+    </section>
+
+    <!-- Partie jeu -->
+    <section id="mazeGame">
+        <!-- Pseudo joueur -->
+        <h2 id="pseudoPlayer"></h2>  
+        
+        <!-- Canvas -->
+        <canvas id="canvas" height="400" width="700"></canvas>
+
+        <!-- Up controle -->
+        <div id="upControl">
+            <img id="turnL" class="image" src="imgInterface/turnleft.png">
+            <img id="moveF" class="image" src="imgInterface/movefwd.png">
+            <img id="turnR" class="image" src="imgInterface/turnright.png">
+        </div>
+
+        <!-- Down controle -->
+        <div id="downControl">
+            <img id="moveL" class="image" src="imgInterface/moveleft.png">
+            <img id="moveB" class="image" src="imgInterface/moveback.png">
+            <img id="moveR" class="image" src="imgInterface/moveright.png">
+        </div>
+
+        <!-- Boussole -->
+        <div id="compass">
+            <img id="compN" src="imgInterface/compass-N.png">
+            <img id="compE" src="imgInterface/compass-E.png">
+            <img id="compS" src="imgInterface/compass-S.png">
+            <img id="compW" src="imgInterface/compass-W.png">
+        </div>
+
+        <!-- Chat -->
+        <div id="chatBox">
+            <div id="chat"> </div>
+                <select name="typeMsg" id="typeMsg">
+                    <option value="1">Crier </option>
+                    <option value="2">Chuchoter </option>
+                    <option value="3">Parler</option>
+                </select>
+            <input type="text" id="chatText">
+            <button id ="btnChat" >Envoyer</button>
+        </div>
+
+        <!-- Bouton logout -->
+        <div id="btnLogout" class="btn">
+            <a>Deconnexion</a>
+        </div>
+    </section>
+
+    <!-- Logo -->
+    <img id="iconMaze" src ="img/iconMaze.png">
+      
+    <!-- Partie footer -->
+    <footer>
+        <div id="secondLine"> </div>
+        <div id="copyright">
+            <span> Réalisés par : Pierard Loic et Dethioux Pierre 3IN 2021</span>
+        </div>
+    </footer>
+    
+    <script src="script.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@500&family=Dancing+Script:wght@500&display=swap'); /* Caractères spéciaux via google fonts */
+
+/* ******************************** CONFIG DE BASE CSS ************************************ */
+* {
+    color: #DAA520; /* Même couleur texte partout, tout élément sauf ceux précisé par code CSS ==> On évite le full blanc ou noir*/
+    margin: 0; /* Mettre tout à zéro pour éviter certains problèmes de positionnement avec d'autres éléments à cause config par défaut des éléments */
+    padding: 0;
+    user-select: none; /* Rien de selectionnable sur le site */
+}
+
+h1{
+    font-size: 6em;
+    margin-top: 100px;
+    text-shadow: 1px 3px 2px antiquewhite;
+}
+
+h2{
+    font-size: 3em;
+}
+
+h1, h2, h3, footer{
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Dancing Script', cursive;
+}
+
+body{
+    background: url(./img/wallpaperMaze.jpg) no-repeat 0% 0%/cover; /* Changer image */
+    font-family: 'Advent Pro', sans-serif;
+}
+
+li{
+    list-style-type: none; /* Pas de style par défaut pour li, par exemple les points dégueulasses */
+}
+
+a{
+    text-decoration: none; /* Va par exemple enlever le soulignement */
+    color: black; /* Texte en noir pour lien */
+}
+
+::placeholder{
+    font-weight: bold;
+    font-size: 1.3em;
+    padding-left: 25px;
+    font-family: 'Advent Pro', sans-serif; /* Les placeholder ne prennent pas les font-family du doc */
+}
+
+p{
+    text-align: center;
+    margin : 20px 5%;
+    font-size: 1.2em;
+}
+
+form{
+    margin: 0 auto; /* Centrer élément */
+    text-align: center; /* Centrer texte */
+    padding: 50px;
+    max-width: 900px; /* Empécher que le formulaire s'aggrandisse à l'infini, on met une valeur max */
+    background-color: #bbb;
+}
+
+button{ /* bouton personnalisé */
+    border-radius: 8px;
+    color: black;
+    font-size: 1.1em;
+    width: 25%;
+    height: 40px;
+    margin: 15px;
+}
+
+input{ /* Pour bouton submit */
+    width: 55%;
+    height: 40px;
+    margin: 2px;
+    padding-left : 15px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    color: black;
+}
+
+/* ******************************** HEADER ************************************ */
+.firstLine{
+    height: 1px;
+    width: 25%;
+    margin: 30px auto; /* Auto ça centre */
+    background-color: #FFFAE1;
+    box-shadow: 1px 3px 2px black; /* Pas un texte mais un trait */
+}
+
+/* ******************************** MAIN PAGE ************************************ */
+/* ******************************** FORMULAIRE ************************************ */
+#loginForm #login:hover{ /*hover ==> Lors du survol par la souris */
+    background-color: #e55039;
+    color: #FFFAE1;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+#registerForm #register:hover{
+    background-color: #e55039;
+    color: #FFFAE1;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.textError{
+    color: #e55039;
+    display : none;
+}
+
+/* ******************************** BOUTONS DE JEU ************************************ */
+#upControl {
+    display: block;
+    margin: 10px auto;
+    height: 30px;
+    width: 140px;
+}
+
+#upControl :hover{
+    background-color: #e55039;
+    color: #FFFAE1;
+    cursor: pointer;
+    opacity: .5;
+}
+
+#downControl {
+    display: block;
+    margin: 10px auto;
+    height: 30px;
+    width: 140px;
+}
+
+#downControl :hover{
+    background-color: #e55039;
+    color: #FFFAE1;
+    cursor: pointer;
+    opacity: .5;
+}
+
+.image:active {
+    transform: translateY(4px);
+}
+
+/* ******************************** BOUSSOLE ************************************ */
+#compN, #compS, #compE, #compW{
+    display: none;
+    margin: 10px auto;
+    height: 50px;
+    width: 180px;
+}
+
+/* ******************************** BOUTON PERSONNALISE ************************************ */
+.btn{
+    margin-top: 45px;
+    margin-bottom: 20px;
+}
+
+.btn a{
+    border-radius: 8px;
+    border: 1px solid antiquewhite;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2em;
+    background-color: #DAA520;
+    width: 200px;
+    margin: 0 auto;
+    display: block;
+    animation: shadow-pop-br 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) both;
+}
+
+.btn a:active{ /* Lors du clique */
+    animation: shadow-back 0.1s cubic-bezier(0.47, 0, 0.745, 0.715) both;
+}
+
+.btn a:hover{
+    background-color: #e55039;
+    color: #FFFAE1;
+    cursor: pointer; /* Pour signifier que le bouton est cliquable */
+    transition: 0.3s ease-in-out; /* Petit effet de transition */
+}
+
+#info #register:hover{
+    background-color: #e55039;
+    color: #FFFAE1;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+/* ******************************** ICONE LABYRINTHE ************************************ */
+#iconMaze{
+    display: block;
+    margin: 100px auto;
+    height: 100px; /* Taille de l'icône sinon trop gros sur la page */
+    width: 100px;
+    animation: mazeFrames linear 3s; /* On utilise la keyframes pour raotation d'une durée de 3 secondes */
+    animation-iteration-count: infinite;
+    transform-origin: 50% 50%;
+}
+
+/* ******************************** POP-UP MODAL ************************************ */
+.modal { /* Box modal */
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+.modal-content { /* Intérieur modal */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem 1.5rem;
+    width: 24rem;
+    border-radius: 0.5rem;
+}
+
+.show-modal {
+    opacity: 1;
+    display: block;   
+}
+
+/* ******************************** CHAT ************************************ */
+#chatBox{
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+#chat{
+	background-color: rgb(118, 125, 126);
+	height: 310px;
+	width: 250px;
+	overflow: scroll;
+}
+
+/* ******************************** CANVAS ************************************ */
+#canvas{ /* Centrer canvas */
+    border: 2px solid antiquewhite;
+    display: block;
+    margin: 0 auto;
+}
+
+/* ******************************** FOOTER ************************************ */
+footer{
+    padding: 10px 10%;
+    font-size: 1.5em;
+}
+
+#secondLine{
+    height: 1px;
+    width: 75%;
+    background-color: #FFFAE1;
+    margin: 40px auto;
+}
+
+/* ******************************** KEYFRAMES ************************************ */
+@keyframes mazeFrames{ /* Rotation de l'icône */
+    0% {
+        transform:  rotate(0) ;
+      }
+      100% {
+        transform:  rotate(360deg) ;
+      }
+}
+
+@keyframes shadow-pop-br { /* Effet de transition du bouton jouer */
+    0% {
+      box-shadow: 0 0 #bbb, 0 0 #bbb, 0 0 #bbb, 0 0 #bbb, 0 0 #bbb, 0 0 #bbb, 0 0 #bbb, 0 0 #bbb;
+      transform: translateX(0) translateY(0); /* Effet de pression */
+    }
+    100% {
+      box-shadow: 1px 1px #bbb, 2px 2px #bbb, 3px 3px #bbb, 4px 4px #bbb, 5px 5px #bbb, 6px 6px #bbb, 7px 7px #bbb, 8px 8px #bbb;
+      transform: translateX(-8px) translateY(-8px);
+    }
+  }
+
+  @keyframes shadow-back {
+    0% {
+      box-shadow: 1px 1px #bbb, 2px 2px #bbb, 3px 3px #bbb, 4px 4px #bbb, 5px 5px #bbb, 6px 6px #bbb, 7px 7px #bbb, 8px 8px #bbb;
+      transform: translateX(-8px) translateY(-8px);
+    }
+    100% {
+      box-shadow: 0 0 #bbb, 0 0 #bbb, 0 0 #bbb, 0 0 #bbb, 0 0 #bbb, 0 0 #bbb, 0 0 #bbb, 0 0 #bbb;
+      transform: translateX(0) translateY(0);
+    }
+  }
+
+/* ******************************** MEDIA QUERIES ************************************ */
+/* Corriger certains soucis d'éléments lors de la diminution de la taille d'écran(responsive) ==> Sinon y'a boostrap pour ça... */
+/* Si temps possible, rendre responsive les autres éléments du site qui peuvent poser problème */
+@media screen and (max-width: 1200px){
+    h1{
+        font-size: 4em;
+    }
+}
+
+@media screen and (max-width: 780px){
+    h1{
+        font-size: 3em;
+    }
+
+    header li{
+        font-size: 1em;
+    }
+
+    header li a{
+        padding: 10px 10px;
+    }
+
+    p{
+        font-size: 1em;
+    }
+}
